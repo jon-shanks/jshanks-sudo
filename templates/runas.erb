@@ -1,7 +1,5 @@
-<% if not @runas_aliases.empty? %>
 <% @runas_aliases.each_pair do |k, v| -%>
 #
 # <%= @runas_aliases[k]['comment'] %>
 Runas_Alias  <%= k %> = <%= @runas_aliases[k]['users'].join(',') %>
 <% end -%>
-<% end %>

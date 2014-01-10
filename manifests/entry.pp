@@ -38,11 +38,13 @@ class sudo::entry($entry_list = {},
                   $priority   = 90)
 {
 
-   $file = $name
+  $file = $name
 
-   file { "/etc/sudoers.d/${priority}-${name}":
+  if $entry_list and !empty($entry_list) {
+    file { "/etc/sudoers.d/${priority}-${name}":
       content     => template('sudo/entry.erb'),
       require     => Class['sudo'],
       mode        => '0440',
-   }
+    }
+  }
 }

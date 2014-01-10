@@ -30,9 +30,11 @@ class sudo::cmnd_alias($command_aliases = {}, $priority = 20)
 
   $file = $name
 
-  file { "/etc/sudoers.d/${priority}-${file}":
-    content     => template('sudo/commands.erb'),
-    require     => Class['sudo'],
-    mode        => '0440',
+  if $command_aliases and !empty($command_aliases) {
+    file { "/etc/sudoers.d/${priority}-${file}":
+      content     => template('sudo/commands.erb'),
+      require     => Class['sudo'],
+      mode        => '0440',
+    }
   }
 }

@@ -26,16 +26,18 @@
 #                                                                      }
 #  }
 #
-class sudo::host_alias($host_aliases = {},
-                       $priority = 40)
+class sudo::host_alias( $host_aliases = {},
+                        $priority = 40)
 {
 
-   $file = $name
+  $file = $name
 
-   file { "/etc/sudoers.d/${priority}-${name}":
+  if $host_aliases and !empty($host_aliases) {
+    file { "/etc/sudoers.d/${priority}-${name}":
       content     => template('sudo/hosts.erb'),
       require     => Class['sudo'],
       mode        => '0440',
-   }
+    }
+  }
 }
 

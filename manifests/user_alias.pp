@@ -22,19 +22,20 @@
 # Sample Usage:
 #  sudo::user_alias { 'user_aliases': priority => 20, user_aliases => {'DICK_AND_DOM' => 
 #                                                                     { 'comment'    => 'user alias for dick and dom',
-#                                                                       'alias'       => 'DICK_AND_DOM',
 #                                                                       'users'       => '["dick","dom","%somegroup"]} }
 #
-class sudo::user_alias($user_aliases   = {},
-                       $priority       = 20)
+class sudo::user_alias( $user_aliases   = {},
+                        $priority       = 20)
 {
 
-   $file = $name
+  $file = $name
 
-   file { "/etc/sudoers.d/${priority}-${file}":
+  if $user_aliases and !empty($user_aliases) {
+    file { "/etc/sudoers.d/${priority}-${file}":
       content     => template('sudo/users.erb'),
       require     => Class['sudo'],
       mode        => '0440',
-   }
+    }
+  }
 }
 

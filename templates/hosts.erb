@@ -1,8 +1,6 @@
-<% if not @host_aliases.empty? %>
 <% @host_aliases.each_pair do |k, v| -%>
 #
 # <%= @host_aliases[k]['comment'] %> 
 Host_Alias  <%= k %> = <%= @host_aliases[k]['hosts'].join(',') %>
 
 <% end -%>
-<% end %>

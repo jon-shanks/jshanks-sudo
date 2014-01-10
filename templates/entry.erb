@@ -1,8 +1,7 @@
-<% if not @entry_list.empty? %>
 <% @entry_list.each_pair do |k, v| -%>
-#
+# <% if @entry_list[k]['comment'] %>
 # <%= @entry_list[k]['comment'] %>
-<%= k %>  <% if @entry_list[k]['hosts'] %><%= @entry_list[k]['hosts'].join(',') %><% end %> = (<%= @entry_list[k]['users'].join(',') %>) <% if @entry_list[k]['tagspec'] %><% @entry_list[k]['tagspec'].each do |tag| %><%= tag%>:<% end %><% end %>  <%= @entry_list[k]['commands'].join(',') %>
+# <% end %>
+<%= @entry_list[k]['name'] %>  <% if @entry_list[k]['hosts'] %><%= @entry_list[k]['hosts'].join(',') %><% end %> = <% if @entry_list[k]['users'] %>(<%= @entry_list[k]['users'].join(',') %>)<% end %> <% if @entry_list[k]['tagspec'] %><% @entry_list[k]['tagspec'].each do |tag| %><%= tag%>:<% end %><% end %>  <%= @entry_list[k]['commands'].join(',') %>
 
 <% end -%>
-<% end %>

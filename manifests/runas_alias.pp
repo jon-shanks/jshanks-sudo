@@ -30,11 +30,13 @@ class sudo::runas_alias($runas_aliases = {},
                         $priority = 40)
 {
 
-   $file = $name
+  $file = $name
 
-   file { "/etc/sudoers.d/${priority}-${name}":
+  if $runas_aliases and !empty($runas_aliases) {
+    file { "/etc/sudoers.d/${priority}-${name}":
       content     => template('sudo/runas.erb'),
       require     => Class['sudo'],
       mode        => '0440',
-   }
+    }
+  }
 }

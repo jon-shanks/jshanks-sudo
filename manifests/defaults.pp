@@ -21,12 +21,14 @@
 class sudo::defaults( $defaults = {},
                       $priority = 10 )
 {
-  
-   $file = $name 
-   file { "/etc/sudoers.d/${priority}-${file}":
+
+  $file = $name
+
+  if $defaults and !empty($defaults) {
+    file { "/etc/sudoers.d/${priority}-${file}":
       content     => template('sudo/defaults.erb'),
       mode        => '0440',
       require     => Class['sudo'],
-   }
-   
+    } 
+  }
 }
