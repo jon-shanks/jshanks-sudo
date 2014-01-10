@@ -1,0 +1,8 @@
+<% if not @command_aliases.empty? %>
+<% @command_aliases.each_pair do |k, v| -%>
+#
+# <%= @command_aliases[k]['comment'] %> 
+Cmnd_Alias  <%= k %> = <%= @command_aliases[k]['commands'].join(',') %>
+
+<% end -%>
+<% end %>

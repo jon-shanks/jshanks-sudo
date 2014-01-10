@@ -1,0 +1,8 @@
+<% if not @defaults.empty? %>
+<% @defaults.each_pair do |k, v| -%>
+#
+# <%= @defaults[k]['comment'] %>
+Defaults <%= @defaults[k]['command'] %>
+
+<% end -%>
+<% end %>
